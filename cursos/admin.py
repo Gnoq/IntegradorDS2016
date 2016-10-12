@@ -48,14 +48,27 @@ class CursoAdmin(admin.ModelAdmin):
 @admin.register(Cursado)
 class CursadoAdmin(admin.ModelAdmin):
     actions_on_bottom = True
+    fieldsets = (
+        (None, {
+            'fields': (
+                'curso',
+                'alumno',
+                )
+        }),
+    )
     list_display = (
+        'curso',
+        'alumno',
+        'fecha_inscripcion',)
+    list_filter = (
+        'fecha_inscripcion',
         'alumno',
         'curso')
     search_fields = (
         'alumno__nombre',
-        'alumno__apellido'
-        'curso__nombre'
-    )
+        'alumno__apellido',
+        'alumno__nroAlumno',
+        'curso__nombre',)
     date_hierarchy = 'fecha_inscripcion'
 
 

@@ -1,6 +1,6 @@
 from django.db import models
 from personas.models import Docente, Alumno
-from .choices import ASISTENCIA
+from .choices import ASISTENCIA, ESTADOS_CURSOS
 
 
 class Curso(models.Model):
@@ -18,17 +18,21 @@ class Curso(models.Model):
         verbose_name=('Descripción'))
     horario_cursado = models.TextField(
         verbose_name=('Horario de cursado'))
+    estado = models.CharField(
+        max_length=255,
+        choices=ESTADOS_CURSOS,
+        null=True)
 
     def __str__(self):
-        return self.nombre
+        return self.nombre.upper()
 
 
 class Cursado(models.Model):
     fecha_inscripcion = models.DateField(
         auto_now=True,
         verbose_name=('Fecha de Inscripción'))
-    alumno = models.ForeignKey(Alumno)
     curso = models.ForeignKey(Curso)
+    alumno = models.ForeignKey(Alumno)
 
     def __str__(self):
         return "{1}  {0}   {2}".format(self.fecha_inscripcion, self.curso.nombre, self.alumno.nombre_completo)
