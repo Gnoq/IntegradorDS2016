@@ -33,6 +33,17 @@ class Cursado(models.Model):
     def __str__(self):
         return "{1}  {0}   {2}".format(self.fecha_inscripcion, self.curso.nombre, self.alumno.nombre_completo)
 
+    @staticmethod
+    def get_with(query):
+        queryset = Cursado.objects.filter(alumno__nroAlumno=query)
+        return queryset
+
+
+    @staticmethod
+    def get_Alumnos(query):
+        queryset = Alumno.objects.filter(cursado__curso=query)
+        return queryset
+
 
 class Asistencia(models.Model):
     fecha = models.DateTimeField(
@@ -46,6 +57,11 @@ class Asistencia(models.Model):
 
     def __str__(self):
         return "{0} | {1} : {2}".format(self.cursado.alumno.nombre_completo, self.cursado.curso.nombre, self.presente)
+
+    @staticmethod
+    def get_with(query):
+        queryset = Asistencia.objects.filter(cursado__alumno__nroAlumno=query)
+        return queryset
 
 
 class Nota(models.Model):
@@ -63,3 +79,8 @@ class Nota(models.Model):
 
     def __str__(self):
         return "{0} | {1} : {2}".format(self.cursado.alumno.nombre_completo, self.cursado.curso.nombre, self.nota)
+
+    @staticmethod
+    def get_with(query):
+        queryset = Nota.objects.filter(cursado__alumno__nroAlumno=query)
+        return queryset

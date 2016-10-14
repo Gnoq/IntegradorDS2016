@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Resultados{% endblock %}
+
+{% block content %}
+<form action="/asistencia/" method="POST">
+{% csrf_token %}
+
+<h2>Alumnos que realizan el Curso: {{ curso }}</h2>
+    {% for alumno in alumnosRelacionados %}
+
+<table style="text-align:center;">
+<tr>
+  <td><strong>Alumno</strong></td>
+  <td><strong>-</strong></td>
+  <td><strong>Legajo</strong></td>
+  <td><strong>-</strong></td>
+  <td><strong>Asistencia</strong></td>
+</tr>
+
+<tr>
+  <td>{{ alumno.apellido|upper }} {{ alumno.nombre }}</td>
+  <td><strong></strong></td>
+  <td>{{ alumno.nroAlumno }}</td>
+  <td><strong></strong></td>
+  <td><input type="radio" name="gender" value="Presente" checked> Presente<br>
+  <input type="radio" name="gender" value="Ausente"> Ausente<br></td>
+</tr>
+
+</table>
+    {% endfor %}
+<input type="submit" name="submit" value="Guardar" >
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Resultados{% endblock %}
+
+{% block content %}
+
+<h2>Se buscó: {{ nroAlumno }}</h2>
+
+{% if alumno %}
+<h1>{% for a in alumno %}{{ a.nombre_completo }}{% endfor %}</h1>
+{% if cursados %}
+<h3>Cursos relacionados al Alumno:</h3>
+<table style="text-align:center;">
+<tr>
+  <td scope="col"><strong>Curso </strong>
+  <td scope="col"><strong>-</strong></td>
+  <td scope="col"><strong>Fecha de Inscripción</strong></td>
+</tr>
+    {% for cursado in cursados %}
+<tr>
+  <td>{{ cursado.curso.nombre }}</td>
+    <td><strong> </strong></td>
+  <td>{{ cursado.fecha_inscripcion }}</td>
+</tr>
+    {% endfor %}
+
+</table>
+    {% else %}
+<h3>El alumno no está inscrito a ningún curso</h3>
+{% endif %}
+<br/>
+{% if asistencias %}
+<h3>Asistencias relacionadas al Alumno:</h3>
+
+<table style="text-align:center;">
+<tr>
+  <td scope="col"><strong>Curso</strong></td>
+    <td><strong>-</strong></td>
+  <td scope="col"><strong>Fecha de Asistencia</strong></td>
+    <td><strong>-</strong></td>
+  <td scope="col"><strong>Asistencia</strong></td>
+</tr>
+    {% for asistencia in asistencias %}
+<tr>
+  <td>{{ asistencia.cursado.curso.nombre }} </td>
+    <td> </td>
+  <td>{{ asistencia.fecha }}</td>
+    <td> </td>
+  <td>{{ asistencia.presente }}</td>
+</tr>
+ {% endfor %}
+</table>
+{% endif %}
+<br/>
+{% if notas %}
+<h3>Notas relacionadas al Alumno:</h3>
+<table style="text-align:center;">
+<tr>
+  <td scope="col"><strong>Curso</strong></td>
+        <td><strong>-</strong></td>
+  <td scope="col"><strong>Fecha de Examen</strong></td>
+        <td><strong>-</strong></td>
+  <td scope="col"><strong>Nota</strong></td>
+        <td><strong>-</strong></td>
+    <td scope="col"><strong>Tema de Evaluación</strong></td>
+</tr>
+ {% for nota in notas %}
+<tr>
+  <td>{{ nota.cursado.curso.nombre }}</td>
+    <td> </td>
+  <td>{{ nota.fecha }}</td>
+    <td> </td>
+  <td>{{ nota.nota }}</td>
+    <td> </td>
+    <td>{{ nota.tema_evaluacion }}</td>
+</tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% else %}
+<h3>El Legajo no corresponde a ningún Alumno</h3>
+{% endif %}
+
+
+
+{% endblock %}
+

@@ -49,6 +49,13 @@ class Alumno(Persona):
         unique=True,
     )
 
+    @staticmethod
+    def get_with(query):
+        queryset = Alumno.objects.filter(nroAlumno=query)
+        return queryset
+
+
+
 class Docente(Persona):
     nroDocente = models.CharField(
         max_length=6,
