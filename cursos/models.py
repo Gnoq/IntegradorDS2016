@@ -6,7 +6,7 @@ from .choices import ASISTENCIA, ESTADOS_CURSOS
 class Curso(models.Model):
     nombre = models.CharField(
         max_length=200,
-        verbose_name=('Nombre'))
+        verbose_name=('Nombre de Curso'))
     fecha_inicio = models.DateField(
         verbose_name=('Fecha de Inicio'))
     fecha_finalizado = models.DateField(
