@@ -37,10 +37,12 @@ class CursoAdmin(admin.ModelAdmin):
     search_fields = (
         'nombre',
         'descripcion',
-        'docente',)
+        'docente__nombre',
+        'docente__apellido')
     list_filter = (
         'nombre',
-        'docente',
+        'docente__nombre',
+        'docente__apellido',
         'fecha_inicio',)
     date_hierarchy = 'fecha_inicio'
 
@@ -62,8 +64,9 @@ class CursadoAdmin(admin.ModelAdmin):
         'fecha_inscripcion',)
     list_filter = (
         'fecha_inscripcion',
-        'alumno',
-        'curso')
+        'alumno__nombre',
+        'alumno__apellido',
+        'curso__nombre')
     search_fields = (
         'alumno__nombre',
         'alumno__apellido',

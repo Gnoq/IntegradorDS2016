@@ -4,8 +4,8 @@ ASISTENCIA = (
 )
 
 ESTADOS_CURSOS = (
-    ('En espera', ('En espera')),
+    ('En Espera', ('En Espera')),
     ('Aceptado', ('Aceptado')),
     ('Terminado', ('Terminado')),
-    ('Cancelado', ('Cancelado'))
+    ('Cancelado', ('Cancelado')),
 )
